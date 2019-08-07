@@ -5,7 +5,7 @@ to this router would be 192.168.0.19
 
 - Try 127.0.0.1 in the browser to see what server technology it shows?
 
-- Now if u try to put the IP such as 192.168.0.3 it will try to find a compputer on ur own network that has this address not on
+- Now if u try to put the IP such as 192.168.0.3 it will try to find a computer on ur own network that has this address not on
 the internet 
 
 - tcpdump -> It's a powerfull cmdline packet sniffer, to analyse the packets that r going in and out of ur network 
@@ -20,9 +20,9 @@ out packets and the domain to which the packet ends up to.
 - sudo tcpdump -c 5 -i wlo1 // this will now listen to a specific interface here it is wl01
 - sudo tcpdump -xx -i wlo1 // this will print out the packets in hex and ASCII format 
 - sudo tcpdump -i wlo1 port 22 // to capture packets from specific ports to run this properly connect to some server by the cmd
-  ssh user_name_of_remote_server@ip_address_of_Server on another terminal(2nd) and each time u do something on 2nd terminal u
+- ssh user_name_of_remote_server@ip_address_of_Server on another terminal(2nd) and each time u do something on 2nd terminal u
   will see the changes in terminal 1
--
+
 - host file is present in /etc/hosts 
 - cmd -> sudo nano /etc/hosts  // think of the file opened as an internal DNS lookup functionality, So when u go to app.localhost
   // the first place the computer checks for routes is this hosts file and if doesn't find an entry for a domain in the host file
