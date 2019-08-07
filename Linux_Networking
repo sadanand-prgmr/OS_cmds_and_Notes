@@ -23,27 +23,27 @@ out packets and the domain to which the packet ends up to.
 - ssh user_name_of_remote_server@ip_address_of_Server on another terminal(2nd) and each time u do something on 2nd terminal u
   will see the changes in terminal 1
 
-- host file is present in /etc/hosts 
+- host file is present in /etc/hosts  -@@
 - cmd -> sudo nano /etc/hosts  // think of the file opened as an internal DNS lookup functionality, So when u go to app.localhost
   // the first place the computer checks for routes is this hosts file and if doesn't find an entry for a domain in the host file
   // then it goes to the router and the to DNS server, So by adding entries here we can actually overwrite the default behaviour
-  // of known domains that we wants to change 
-- edit file by entering as in the 1st column the IP, in 2nd host name, in 3rd enter alias
+  // of known domains that we wants to change  -@@
+- edit file by entering as in the 1st column the IP, in 2nd host name, in 3rd enter alias -@@
 Ex-> 216.58.218.142      go.com      go //edit like this in /etc/hosts file and then in the browser enter 'go', this way u can  
 create shoutcuts for ur favourite websites, but this works better for simple websites with the websites such as google which
-have lots of internal routing going on it not works generally.  
+have lots of internal routing going on it not works generally.   -@@
 - Go to network-tools.com and then type google.com to know it's IP, this IP is also usefull with tcpdump so that we can analyse
-the packets and see that from were the packets r coming into our network 
+the packets and see that from were the packets r coming into our network  -@@
   
 - sudo hostnamectl set-hostname name_for_host // To change hostname then edit hosts file by cmd-> sudo nano /etc/hosts and
 then change the hostname their as replace the old name with new name then cmd -> sudo service hostname restart
-- hostname // to check hostname 
-- in the browser enter http://hostname // to go to localhost page
+- hostname // to check hostname -@@
+- in the browser enter http://hostname // to go to localhost page 
 
+## Nmap -@@ 
 - nmap is a open source network scanner, it is used to discover hosts or services on network by sending packets and analysing the
 responses, most beginners only use nmap to scan a network for open ports but u can use it to discover host services, OS and even
 use its extensible scripting library for vulnerability scanning 
-
 - sudo apt-get update && sudo apt-get install nmap  // to install nmap 
 - nmap -sP 192.168.50.0/24 // this is to scan a subnet here we r scanning from 192.168.50.0 to 192.168.50.254, by this we r now
 looking for hosts that r up and ping able    
@@ -63,17 +63,16 @@ looking for hosts that r up and ping able
 - This is aggressive scan be carefull with this as it more easily detectable then the previous scans, this uses a variety of scan
 options which r included in a single param -A, this scan take a little longer but it give lot more information then previous scans
 cmd -> nmap 192.168.50.4 -A 
-
 - When u start working on a new network the 1st things u wants to do is to reduce the list of devices or IPs in the network into a
 list that only contains devices that r interesting for further investigation 
 - listscan lists each host of the network without sending any packets to the hosts themselves, it can sometimes does not work such
-as if u scan 10 ip addresses and zero hosts r found	but it can also mean that it was simply blocked by the machine 
+as if u scan 10 ip addresses and zero hosts r found but it can also mean that it was simply blocked by the machine 
 cmd -> nmap -sL 192.168.56.100-105
 - No port scan, it means that u don't run a port scan after host discovery is done it only prints out the available hosts that 
 responded to the discovery probs, u can also call it a ping scan basically 
 cmd -> nmap -sn 192.168.50.8 // it basically only report that the host is either up or down, u can also run it against the larger
 no. of IP addresses at the same time, it is good for some live reconissance
-- The no ping scan skips the complete Nmap discovery process. Nmap directly starts to run to run it's default port scans (1000 most 
+- The no ping scan skips the complete Nmap discovery process. Nmap directly starts to run it's default port scans (1000 most 
 used) if it finds the target IP is up.
 cmd -> nmap -Pn 192.168.56.8	// it will show how many ports r closed and open on the machine
 cmd -> 192.168.56.100-105
@@ -82,22 +81,18 @@ tells the remote system that u r attempting to connect to it basically, if the p
 of 3way handshake by responding with a SYN/ACK tcp packet, This is usefull for systems which block the ICMP requests, u can also
 change the default port to the port want
 cmd -> nmap -PS 192.168.56.8	// this is for default port 80
-cmd -> nmap -PS22 192.168.56.8	// thi is for port 22
-
+cmd -> nmap -PS22 192.168.56.8	// this is for port 22
 - TCP ACK ping this is usefull for networks that blocks the ICMP and the SYN scan both, It discovers the host by responding to
 non-existing TCP connections to provoke a response from the target, On finding the target up and running then it runs a default
 port scan against it
 cmd -> nmap -PA 192.168.56.8 // this might only work bcz we don't have firewall running behind or infront of the clients otherwise
 it will not work
-
 - UDP ping scan sends the UDP packets to get a response from the target. Most networks,firewalls that block UDP requests by default
 or if they r not properly configured, if u r not logged in as root then u might need to use the sudo prefix
 cmd -> sudo nmap -PU 192.168.56.8	// this will also return the MAC of the virtual NIC and the open ports on the target
-
 - SCTP(Stream Control Trnasmission Protocol) init ping scan, it is used to discover VOIP services such as voice over IP, IP telephonig
 cmd -> sudo nmap -PY 192.168.56.8 // this is usefull bcz people do not update their devicecs and hence they r more vulnerable
 cmd -> sudo nmap22,80 -PY 192.168.56.8 // this is to use different ports at the same time
-
 - ICMP echo ping 
 cmd -> sudo nmap -PE 192.168.56.8 // this is same as ping, if u don't put sudo then it will run the TCP scan rather then ICMP
 
@@ -150,7 +145,7 @@ SSH to Access the commandline of a Remote Host ->
 cmd -> ssh username@remote_host_name
 use cmd -> exit // to close the connection
 
-Transfr Files Between 2 computers using SFTP->
+Transfer Files Between 2 computers using SFTP->
 SFTP (Secure File Transfer Protocol) , FTP port 21, transfers file in clear text.
 cmd -> sftp username@remote_host_name
 > ls // for the listing on remote host 
